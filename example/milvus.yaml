@@ -1,0 +1,22 @@
+apiVersion: helm.crossplane.io/v1beta1
+kind: Release
+metadata:
+  name: milvus-release
+spec:
+ providerConfigRef:
+    name: default
+ forProvider:
+    chart:
+     repository: https://zilliztech.github.io/milvus-helm/
+     name: milvus
+    values:
+      cluster:
+        enabled: false
+      etcd:
+        replicaCount: 1
+      minio:
+        mode: standalone
+      pulsar:
+        enabled: false
+    namespace: default
+
